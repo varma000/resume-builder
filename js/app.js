@@ -19,6 +19,31 @@ function goBack() {
   isEditing = false;
   document.getElementById('editToggle').textContent = '✏ Edit resume';
   document.getElementById('editToggle').classList.remove('active-tool');
+  currentTemplate = 'modern';
+  document.querySelectorAll('.template-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.template-tab[data-template="modern"]').classList.add('active');
+}
+
+// ─── TEMPLATE SWITCHING ─────────────────────────────────────────
+let currentTemplate = 'modern';
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.template-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.template-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentTemplate = tab.dataset.template;
+      applyTemplate(currentTemplate);
+    });
+  });
+});
+
+function applyTemplate(template) {
+  const paper = document.getElementById('resumePaper');
+  paper.classList.remove('template-modern', 'template-classic', 'template-minimal');
+  if (template !== 'modern') {
+    paper.classList.add('template-' + template);
+  }
 }
 
 // ─── GROQ API KEY (FREE) ───────────────────────────────────────
@@ -174,7 +199,8 @@ function renderResume(r) {
       ${r.certifications.map(c => `<li>${c}</li>`).join('')}
     </ul>` : '';
 
-  document.getElementById('resumePaper').innerHTML = `
+  const paper = document.getElementById('resumePaper');
+  paper.innerHTML = `
     <div class="r-header">
       <div class="r-name">${r.name}</div>
       <div class="r-desig">${r.designation}</div>
@@ -195,6 +221,7 @@ function renderResume(r) {
     ${eduHTML}
     ${certHTML}
   `;
+  applyTemplate(currentTemplate);
 }
 
 // ─── EDIT MODE ─────────────────────────────────────────────────

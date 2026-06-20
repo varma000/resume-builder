@@ -372,6 +372,164 @@ footer {
   text-align: center;
 }
 
+/* ── TEMPLATE TABS ── */
+.template-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+.template-tab {
+  padding: 8px 20px;
+  border: 1px solid #DDD;
+  background: #fff;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+  color: #666;
+}
+.template-tab:hover {
+  border-color: #5046E5;
+  color: #5046E5;
+}
+.template-tab.active {
+  background: #5046E5;
+  border-color: #5046E5;
+  color: #fff;
+}
+
+/* ── CLASSIC TEMPLATE ── */
+.template-classic .r-header {
+  border-bottom: 2px solid #1A1A1A;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+.template-classic .r-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  color: #1A1A1A;
+}
+.template-classic .r-desig {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.template-classic .r-contacts {
+  justify-content: center;
+  margin-top: 14px;
+}
+.template-classic .r-contact-item {
+  font-size: 12px;
+  color: #555;
+}
+.template-classic .r-section-title {
+  color: #1A1A1A;
+  border-bottom: 1px solid #1A1A1A;
+  font-size: 12px;
+  margin-top: 1.75rem;
+}
+.template-classic .r-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+}
+.template-classic .r-company {
+  color: #333;
+  font-style: italic;
+}
+.template-classic .r-skill-tag {
+  background: #F0F0F0;
+  color: #333;
+  font-weight: 400;
+}
+.template-classic .r-edu-row {
+  border-left: 3px solid #1A1A1A;
+  padding-left: 12px;
+  margin-bottom: 12px;
+}
+
+/* ── MINIMAL TEMPLATE ── */
+.template-minimal .r-header {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 2rem;
+}
+.template-minimal .r-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #1A1A1A;
+}
+.template-minimal .r-desig {
+  font-size: 15px;
+  color: #888;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.template-minimal .r-contacts {
+  margin-top: 12px;
+}
+.template-minimal .r-contact-item {
+  font-size: 12px;
+  color: #999;
+}
+.template-minimal .r-section-title {
+  color: #888;
+  border-bottom: none;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  margin-top: 2rem;
+  padding-bottom: 0;
+}
+.template-minimal .r-summary {
+  color: #555;
+  font-size: 13px;
+}
+.template-minimal .r-exp-item {
+  margin-bottom: 1.5rem;
+  border-left: 2px solid #E8E8E8;
+  padding-left: 16px;
+}
+.template-minimal .r-role {
+  font-weight: 500;
+  color: #1A1A1A;
+}
+.template-minimal .r-company {
+  color: #666;
+}
+.template-minimal .r-duration {
+  color: #AAA;
+  font-size: 11px;
+}
+.template-minimal .r-bullets li {
+  color: #666;
+  font-size: 12px;
+}
+.template-minimal .r-skill-tag {
+  background: transparent;
+  color: #555;
+  border: 1px solid #E0E0E0;
+  font-weight: 400;
+  padding: 4px 10px;
+}
+.template-minimal .r-degree {
+  font-weight: 500;
+}
+.template-minimal .r-school {
+  color: #888;
+}
+.template-minimal .r-cert-list li::before {
+  color: #AAA;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   .hero h1 { font-size: 34px; }
@@ -380,10 +538,11 @@ footer {
   .navbar { padding: 1rem 1.25rem; }
   .r-name { font-size: 22px; }
   .hero-stats { gap: 1rem; }
+  .template-tabs { flex-wrap: wrap; }
 }
 
 @media print {
-  .navbar, .resume-toolbar, .edit-banner { display: none; }
+  .navbar, .resume-toolbar, .edit-banner, .template-tabs { display: none; }
   .resume-container { margin: 0; padding: 0; }
   .resume-paper { box-shadow: none; border: none; border-radius: 0; }
 }
