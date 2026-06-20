@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeAI — Build Your Resume in 60 Seconds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- LANDING PAGE -->
+  <div id="landingPage">
+    <nav class="navbar">
+      <div class="logo">Resume<span>AI</span></div>
+      <button class="nav-cta" onclick="showBuilder()">Try Free</button>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-badge">✦ Powered by Claude AI</div>
+      <h1>Your professional resume,<br><em>built in 60 seconds.</em></h1>
+      <p class="hero-sub">Just enter your name and job title — our AI writes your complete, job-ready resume instantly. No forms. No templates. Just results.</p>
+      <button class="hero-btn" onclick="showBuilder()">Build my resume — it's free</button>
+      <div class="hero-stats">
+        <div class="stat"><strong>10,000+</strong><span>Resumes created</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>60 sec</strong><span>Average time</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>100%</strong><span>AI-generated</span></div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">①</div>
+          <h3>Enter your details</h3>
+          <p>Just your name and job designation. That's all we need to get started.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-icon">②</div>
+          <h3>AI builds your resume</h3>
+          <p>Our AI writes your summary, experience, skills, and education in seconds.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-icon">③</div>
+          <h3>Edit and download</h3>
+          <p>Make any changes you want, then download your polished PDF resume.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to land your dream job?</h2>
+      <p>Join thousands of professionals who built their resume in under a minute.</p>
+      <button class="hero-btn" onclick="showBuilder()">Get started — free</button>
+    </section>
+
+    <footer>
+      <p>© 2025 ResumeAI · Built with Claude AI</p>
+    </footer>
+  </div>
+
+  <!-- BUILDER PAGE -->
+  <div id="builderPage" style="display:none;">
+    <nav class="navbar">
+      <div class="logo" onclick="showLanding()" style="cursor:pointer;">Resume<span>AI</span></div>
+      <div class="nav-steps">
+        <span class="nav-step active" id="stepTab1">1. Enter Details</span>
+        <span class="nav-step" id="stepTab2">2. Your Resume</span>
+      </div>
+    </nav>
+
+    <!-- STEP 1: Input Form -->
+    <div id="step1" class="builder-wrap">
+      <div class="form-card">
+        <h2>Tell us about yourself</h2>
+        <p class="form-subtitle">Fill in your details — AI will handle the rest</p>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Full name <span class="required">*</span></label>
+            <input type="text" id="inputName" placeholder="e.g. Priya Sharma" />
+          </div>
+          <div class="field-group">
+            <label>Job designation <span class="required">*</span></label>
+            <input type="text" id="inputDesig" placeholder="e.g. Digital Marketer" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Years of experience</label>
+            <select id="inputExp">
+              <option value="">Select (optional)</option>
+              <option value="Fresher with 0-1 years of experience">Fresher (0–1 years)</option>
+              <option value="2-4 years of experience">2–4 years</option>
+              <option value="5-8 years of experience">5–8 years</option>
+              <option value="over 8 years of experience">8+ years</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Industry</label>
+            <input type="text" id="inputIndustry" placeholder="e.g. E-commerce, IT, Finance" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Email address</label>
+            <input type="email" id="inputEmail" placeholder="your@email.com" />
+          </div>
+          <div class="field-group">
+            <label>Phone number</label>
+            <input type="text" id="inputPhone" placeholder="+91-XXXXXXXXXX" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>City / Location</label>
+          <input type="text" id="inputCity" placeholder="e.g. Mumbai, Maharashtra" />
+        </div>
+
+        <div id="formError" class="form-error" style="display:none;">Please enter your name and designation to continue.</div>
+
+        <button class="generate-btn" id="generateBtn" onclick="generateResume()">
+          ✦ Generate my resume with AI
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Resume Output -->
+    <div id="step2" style="display:none;">
+      <div class="resume-toolbar">
+        <div class="toolbar-left">
+          <button class="tool-btn" onclick="goBack()">← Back</button>
+          <button class="tool-btn active-tool" id="editToggle" onclick="toggleEdit()">✏ Edit resume</button>
+        </div>
+        <div class="toolbar-right">
+          <button class="tool-btn download-btn" onclick="downloadResume()">⬇ Download PDF</button>
+        </div>
+      </div>
+
+      <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-box">
+          <div class="spinner"></div>
+          <p id="loadingMsg">AI is writing your resume...</p>
+        </div>
+      </div>
+
+      <div id="resumeOutput" class="resume-container" style="display:none;">
+        <div class="resume-paper" id="resumePaper">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
